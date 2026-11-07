@@ -1,0 +1,10 @@
+info face="DIVA Catalog Symbols" size=16 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=16 base=13 scaleW=128 scaleH=16 pages=1 packed=0
+page id=0 file="divaCatalogSymbols.png"
+chars count=6
+char id=8734 x=0 y=0 width=16 height=16 xoffset=0 yoffset=0 xadvance=16 page=0 chnl=15
+char id=9678 x=16 y=0 width=16 height=16 xoffset=0 yoffset=0 xadvance=16 page=0 chnl=15
+char id=9733 x=32 y=0 width=16 height=16 xoffset=0 yoffset=0 xadvance=16 page=0 chnl=15
+char id=9734 x=48 y=0 width=16 height=16 xoffset=0 yoffset=0 xadvance=16 page=0 chnl=15
+char id=9827 x=64 y=0 width=16 height=16 xoffset=0 yoffset=0 xadvance=16 page=0 chnl=15
+char id=9834 x=80 y=0 width=16 height=16 xoffset=0 yoffset=0 xadvance=16 page=0 chnl=15

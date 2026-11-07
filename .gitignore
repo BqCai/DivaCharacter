@@ -1,0 +1,12 @@
+/build/
+/reports/
+/assets/source/
+/assets/processed/
+/captures/
+/.lwjgl/
+/project.local.json
+/-
+/mod/DivaCharacter/42/media/java/client/*.jar
+/mod/DivaCharacter/42/media/java/client/*.jar.*
+/mod/DivaCharacter/42/media/divachar-shaders/
+__pycache__/

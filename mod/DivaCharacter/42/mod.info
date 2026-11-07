@@ -1,0 +1,10 @@
+name=DIVA Character - Development
+id=DivaCharacter
+description=Default Miku character renderer for Viewpoint. Development build; source shader adaptation and animation are under validation.
+modversion=0.1.0
+versionMin=42.21
+versionMax=42.21
+require=\ZombieBuddy,\Viewpoint
+ZBVersionMin=2.3.4
+javaJarFile=media/java/client/DivaCharacter.jar
+javaPkgName=divachar

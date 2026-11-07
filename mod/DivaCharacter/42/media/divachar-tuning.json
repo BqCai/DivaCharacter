@@ -1,0 +1,29 @@
+{
+  "scale": 0.58,
+  "gain": 1.0,
+  "sourcePose": false,
+  "scattering": true,
+  "capture": 24,
+  "skinRed": 1.0,
+  "skinGreen": 1.0,
+  "skinBlue": 1.0,
+  "corneaGain": 1.14,
+  "shaderReload": 19,
+  "hairShadow": true,
+  "hairShoulderGuard": true,
+  "irisPost": true,
+  "irisHdr": true,
+  "irisFog": true,
+  "irisSceneLight": true,
+  "irisHdrGain": 0.4,
+  "physics": {
+    "hairSettleDelay": 0.12,
+    "hairSettleDamping": 0.78,
+    "hairSettleDeadband": 0.55,
+    "skirtClearance": 0.0,
+    "garmentLiftAllowance": 8,
+    "jacketOpening": 0.95,
+    "tieDropStrength": 0.07,
+    "tieCenterStrength": 36
+  }
+}

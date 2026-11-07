@@ -1,0 +1,6 @@
+# Third-party notices
+
+- The asset importer uses DSC command layouts, common-motion mappings, and IBL mip filtering from ReDIVA by korenkonder and contributors. The skin renderer uses its scattering profile calculation. The applicable MIT notice is included in `licenses/ReDIVA-MIT.txt`. [ReDIVA](https://github.com/korenkonder/ReDIVA)
+- Install ZombieBuddy by Zed and Project Viewpoint by ellu and norkus separately in Project Zomboid. [ZombieBuddy](https://github.com/zed-0xff/ZombieBuddy) · [Project Viewpoint](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528)
+- Install MikuMikuModel v2.2.0 by blueskythlikesclouds and contributors separately for its MikuMikuLibrary DLL. [Official v2.2.0 release](https://github.com/blueskythlikesclouds/MikuMikuLibrary/releases/tag/v2.2.0)
+- The mod reads models, textures, animation, physics, PV cameras, and music from the user's local game installation. Rights to Hatsune Miku: Project DIVA Mega Mix+ remain with SEGA, Crypton Future Media, INC., and the respective rights holders. [Steam copyright notice](https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/) · [Game EULA](https://store.steampowered.com/eula/1761390_eula_0)
