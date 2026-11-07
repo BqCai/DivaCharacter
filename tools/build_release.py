@@ -59,7 +59,7 @@ def build(output):
                 entry(release,'DivaCharacter/42/'+name,(MOD/name).read_bytes())
             entry(release,'DivaCharacter/INSTALL.md',
                   (build_mod.ROOT/'docs/releases'/f'{VERSION}.md').read_bytes())
-            for name in ('THIRD-PARTY-NOTICES.md','licenses/ReDIVA-MIT.txt'):
+            for name in ('README.md','LICENSE','THIRD-PARTY-NOTICES.md','licenses/ReDIVA-MIT.txt'):
                 entry(release,'DivaCharacter/'+name,(build_mod.ROOT/name).read_bytes())
         package.replace(output)
     print(hashlib.sha256(output.read_bytes()).hexdigest(),output)

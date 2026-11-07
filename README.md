@@ -1,18 +1,208 @@
 # DIVA Character
 
-DIVA Character 在《僵尸毁灭工程》中通过 Project Viewpoint 渲染初音未来，并支持本地换装和部分单人 PV 预览。
+**v0.1.0-alpha.1 · Windows x64 · PZ Build 42.21.0 · 单人 / Single-player**
 
-DIVA Character renders Hatsune Miku through Project Viewpoint in Project Zomboid, with local outfit imports and previews of supported solo PVs.
+[下载安装包 / Download ZIP](https://github.com/BqCai/DivaCharacter/releases/download/v0.1.0-alpha.1/DivaCharacter-v0.1.0-alpha.1.zip) · [首测发布页 / Test release](https://github.com/BqCai/DivaCharacter/releases/tag/v0.1.0-alpha.1)
 
-- [首测版说明与安装教程](docs/releases/v0.1.0-alpha.1.md#简体中文)
-- [Initial test release notes and installation](docs/releases/v0.1.0-alpha.1.md#english)
-- [Third-party notices](THIRD-PARTY-NOTICES.md)
+本页集中提供中文和英文的功能说明、前置依赖、安装教程、常见问题、开发计划、许可证及第三方致谢。
 
-项目代码许可证待作者确定。第三方组件的许可与署名见上方声明。
+This page contains the Chinese and English feature overview, requirements, installation guide, FAQ, roadmap, license, and third-party credits.
 
-The project code license is pending the author's decision. See the notices above for third-party licenses and credits.
+## 简体中文
 
-## Build the test package
+DIVA Character 让你在《僵尸毁灭工程》中以初音未来的外观游玩。模组通过 Project Viewpoint 渲染角色，使用 Future Tone 风格的材质，也能在当前场景里播放部分初音单人 PV。初音外观替换本地玩家的身体和服装显示，装备属性、物品和战斗仍由 PZ 处理。
+
+### 已支持的内容
+
+- **换装与存档恢复**。按 `F8` 扫描本机《初音未来 Project DIVA MEGA39’s+》，选择套装并应用。公式服 `[0]` 和 MEIKO Style `[3]` 已通过游戏内换装和存档恢复测试。
+- **角色渲染与视角**。发布版使用独立实现的 Future Tone 风格着色器，包含彩色高光、环境反射、局部自发光和皮肤散射，并接收场景光照和阴影。F8 中可关闭或调整脸部柔光，默认 `100%` 对应弱柔光，选择随角色存档恢复。首测以 Viewpoint 的内置光影为基线。
+- **玩法动作和物理**。手型随持物和动作变化，持械时武器跟手。初音会眨眼，并有跑步、攻击和受击的表情变化。马尾、领带和裙摆有次级摆动。F8 菜单也能预览八种特殊脸型。
+- **PV 预览**。支持部分初音单人 3D PV 的舞蹈、镜头、音乐和表情。预览期间暂停 PZ 的背景音乐，停止后恢复。可先试《Love is War》`[PV001]`。
+
+### 前置依赖
+
+| 项目 | 首测配置 |
+| --- | --- |
+| 《僵尸毁灭工程》 | Windows x64，Build 42.21.0，单人模式 |
+| ZombieBuddy | 已验证 2.3.4。先订阅，再按上游说明为你使用的 PZ 启动方式安装 Java 代理。[创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) · [安装指南](https://github.com/zed-0xff/ZombieBuddy/blob/master/doc/Installation.md) |
+| Project Viewpoint | 已验证 0.1.6.1。启用在你用于测试的存档中。[创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528) |
+| MEGA39’s+ | 使用自己安装的 Steam 版。可选 DLC 决定目录中可读到的内容。[Steam 商店](https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/) |
+| MikuMikuLibrary | 用于本地导入。使用官方 v2.2.0 的 `MikuMikuModel.7z`，其中 DLL 文件版本为 2.2.0.0。[v2.2.0 下载与依赖说明](https://github.com/blueskythlikesclouds/MikuMikuLibrary/releases/tag/v2.2.0) |
+
+### 安装和使用
+
+先完成 **Windows 常规启动** 的 ZombieBuddy 配置；已经配置过的玩家可跳过这段。
+
+1. 在 Steam 订阅 ZombieBuddy 和 Project Viewpoint，等待下载完成。
+2. 在 PZ 的 Steam 管理菜单点“浏览本地文件”，打开包含 `ProjectZomboid64.exe` 的游戏目录。从对应 Steam 库的 `steamapps\workshop\content\108600\3619862853\mods\ZombieBuddy\libs\` 复制 `ZombieBuddy.jar` 与 `zbNative.dll` 到该游戏目录。
+3. 打开 Steam → PZ → 属性 → 启动选项，加入 `-agentlib:zbNative --`，再选择常规启动。末尾的 `--` 需要保留。Windows 下不必再添加 `-javaagent:ZombieBuddy.jar`。
+4. 如果使用“备用启动 / Alternate Launch”，还需在 `ProjectZomboid64.bat` 的 `SET _JAVA_OPTIONS=` 行追加 `-agentlib:zbNative`；仅设置 Steam 参数对备用启动不足以生效。进入主菜单后确认能看到 ZombieBuddy 的已加载提示。[配置来源：ZombieBuddy 官方安装指南](https://github.com/zed-0xff/ZombieBuddy/blob/master/doc/Installation.md)
+
+**安装 DIVA Character：**
+
+1. 确认上述框架配置已完成，然后退出 PZ。以后通过已配置 Java 代理的启动方式运行 PZ。
+2. 退出 PZ，下载本页顶部链接的测试 ZIP（也可在 GitHub 发布页的 **Assets** 中下载）。将其中的 `DivaCharacter` 文件夹解压到 `%USERPROFILE%\Zomboid\mods\`，保留包内目录结构。解压后应能找到 `%USERPROFILE%\Zomboid\mods\DivaCharacter\42\mod.info`。使用自定义 PZ 数据目录时，将文件夹放进该目录的 `mods` 下。
+3. 下载上表中的 `MikuMikuModel.7z`，将工具文件解压到 MEGA39’s+ 安装目录下的 `MikuMikuModel` 文件夹。保留随附文件，确认 `DivaMegaMix.exe` 所在目录包含 `MikuMikuModel\MikuMikuLibrary.dll`。
+4. 在 PZ 的 **Mods** 菜单启用 ZombieBuddy、Project Viewpoint 和 DIVA Character。测试已有存档时，也检查该存档的模组列表。按游戏提示重启。若 ZombieBuddy 显示 Java 模组授权弹窗，核对 DIVA Character 条目后选择 **Allow**，再点 **OK**。
+5. 进入单人存档，按 `F8` 或从世界右键菜单打开 **DIVA Character...**。点 **Browse** 选择 MEGA39’s+ 安装目录，也可粘贴目录或 `DivaMegaMix.exe` 的完整路径。点 **Scan**，选公式服 `[0]`，再点 **Apply outfit**。
+6. 如果 Viewpoint 视角还没开启，按 `O` 开启。用 `Shift+O` 在第一和第三人称之间切换。试播 PV 时，步行到开阔处并进入第三人称，按 `F8` 选 `[PV001]`，点击 **Play PV**。用 **Stop PV** 返回游玩。[Viewpoint 按键说明](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528)
+
+### 常见问题
+
+**F8 菜单没出现，或者应用后仍是原角色。** 确认 DIVA Character 和 Project Viewpoint 已在当前存档启用，PZ 通过配置了 ZombieBuddy 的启动方式运行，并检查 Java 模组授权状态。也可从世界右键菜单打开面板。
+
+**Scan 报找不到游戏或 DLL。** 选择包含 `DivaMegaMix.exe` 和本体 CPK 文件的目录，检查第 3 步的 DLL 路径和版本。模组在 PZ 用户数据目录的 `DivaCharacter\cache` 中生成导入缓存。
+
+**套装能选中，为什么导入失败？** 目录是按原作套装表生成的。当前检查的 212 套中，有 91 套需要尚待支持的贴图替换，例如雪ミク 2010 `[68]`。其余套装也在逐步验证。首次测试请从公式服 `[0]` 和 MEIKO Style `[3]` 开始。
+
+**PV 显示 unavailable，或者无法播放。** 首测范围是具备兼容动作、镜头和音乐资源的初音单人 3D PV。先应用套装，再离开载具并进入 Viewpoint 第三人称。部分曲目依赖已安装的 DLC，部分镜头格式仍待适配。
+
+**必须用 Eclipse 吗？** 可以直接使用 Viewpoint 的 **Default** 光影。Eclipse V12 也已接入角色材质和后效。不同光源、预设下的还原细节仍会继续迭代。遇到其他光影包显示异常时，用 **Default** 对照。
+
+**怎样恢复原角色？** 在 F8 菜单点 **Restore player**。
+
+### 后续计划
+
+- 按原作套装表统一支持贴图替换，扩大经过实际验证的服装范围。
+- 继续调整长发和衣料物理、不同鞋型的贴地，以及双手武器的辅助手握持。
+- 补齐更多 PV 的镜头格式、专用表情和额外特效。舞台和舞台灯光留待后续探索。
+
+### 项目代码许可证
+
+本项目原创代码、着色器、导入工具和项目文档采用 **MIT License**，版权声明为 `Copyright (c) 2026 BqCai and contributors`。你可以使用、修改和再分发这些内容，包括商业使用，但须保留版权与许可声明；软件按原样提供，不附带担保。这也适用于 `v0.1.0-alpha.1` 首测版中的项目代码。[MIT 许可证标准文本](https://opensource.org/license/mit)
+
+这项许可不涵盖 MEGA39’s+、Project Zomboid 的模型、贴图、动画、音乐或其他游戏资源，也不替代外部依赖各自的许可。移植自 ReDIVA 的部分保留其原始 MIT 版权与许可声明。
+
+### 游戏资源版权
+
+这是独立制作的同人模组。*Project Zomboid* 由 The Indie Stone 开发。*Hatsune Miku: Project DIVA Mega Mix+* 的相关权利归 SEGA、Crypton Future Media, INC. 及各自权利人。原作模型、贴图、动作、镜头和音乐由玩家从自己的游戏安装中在本地导入。请按各游戏和第三方组件适用的条款使用。[MEGA39’s+ 版权信息](https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/) · [MEGA39’s+ 用户协议](https://store.steampowered.com/eula/1761390_eula_0)
+
+### 第三方组件与工具
+
+感谢以下项目及作者。除下述 ReDIVA 移植部分外，这些组件与工具均需单独获取，模组安装包不捆绑它们。
+
+| 项目与作者 | 在本项目中的用途与声明 |
+| --- | --- |
+| **ZombieBuddy — Zed（zed-0xff）** | PZ Java 模组框架，需按上游指南单独安装。[项目主页](https://github.com/zed-0xff/ZombieBuddy) |
+| **Project Viewpoint — ellu、norkus** | 相机、渲染和光影接口，需单独订阅。[创意工坊](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528) |
+| **MikuMikuLibrary / MikuMikuModel — blueskythlikesclouds 及贡献者** | 本地资源读取与模型查看；MikuMikuLibrary DLL 由玩家另行安装。[项目主页](https://github.com/blueskythlikesclouds/MikuMikuLibrary) |
+| **ReDIVA — korenkonder 及贡献者** | 导入工具使用其 DSC 指令布局、通用动作映射和 IBL mip 过滤实现；皮肤渲染采用其散射轮廓计算。相关移植部分遵循 MIT，保留 `Copyright (c) 2024 korenkonder` 及完整许可声明。[项目主页](https://github.com/korenkonder/ReDIVA) |
+| **RenderDoc — Baldur Karlsson 及贡献者** | 开发期间的截帧与渲染分析工具。[项目主页](https://github.com/baldurk/renderdoc) |
+| **Blender — Blender 项目及贡献者** | 开发期间的模型与骨骼检查工具。[项目主页](https://www.blender.org/) |
+
+### 项目贡献者
+
+| 贡献者 | 贡献内容 |
+| --- | --- |
+| **BqCai** | 项目发起与维护、功能需求、美术参考、游戏内测试和效果验收。 |
+| **OpenAI Codex（AI 编程助手）** | 协作实现功能，排查材质、绑定、物理与动作问题，整理测试、构建脚本和中英文发布文档。 |
+
+### 从源码构建
+
+在 Windows 上安装 Python 与 JDK 25。若 JDK 不在构建脚本的默认位置，将 `DIVA_JDK` 指向 JDK 根目录。复制 `project.local.example.json` 为 `project.local.json`，填写 PZ、ZombieBuddy 和包含 MikuMikuLibrary v2.2.0 DLL 的目录路径。导入工具由 Windows .NET Framework 的 C# 编译器构建。
+
+```powershell
+python tools/build_release.py
+```
+
+安装 ZIP 输出到 `build/release`，脚本同时打印 SHA-256。包中包含模组代码、本地导入工具、独立实现的着色器、使用说明和许可声明；游戏资源由 F8 菜单从玩家本机导入。
+
+### 反馈与贡献
+
+欢迎在仓库的 **Issues** 提交问题、兼容性结果或翻译建议。请附 PZ、ZombieBuddy 和 Viewpoint 的版本、光影包及预设、套装或 PV 编号、复现步骤和相关的 `console.txt` 片段。反馈请使用日志与编号，原版游戏文件和导入缓存保留在本地。
+
+也欢迎通过 **Pull Requests** 提交代码、文档和翻译改进。
+
+## English
+
+DIVA Character lets you play as Hatsune Miku in Project Zomboid. It renders her through Project Viewpoint with Future Tone-style materials and can play selected solo Miku PVs in your current scene. The mod replaces the local player's body and clothing visuals. Project Zomboid still handles equipment stats, items, and combat.
+
+### What this build supports
+
+- **Outfits and save restoration.** Press `F8` to scan your local installation of Hatsune Miku: Project DIVA Mega Mix+, select an outfit, and apply it. The default Miku outfit `[0]` and MEIKO Style `[3]` have been tested in game for switching and save restoration.
+- **Rendering and camera support.** The public build uses an independently implemented Future Tone-style shader with coloured specular highlights, environment reflections, localized emission, skin scattering, and scene lighting and shadows. F8 includes a face soft-fill control. It can be turned off or adjusted, defaults to the approved weak fill at `100%`, and is restored with the character's save. Viewpoint's built-in renderer is the baseline for this test.
+- **Gameplay animation and physics.** Hand poses respond to held items and actions, and weapons follow the hands. Miku blinks and reacts to running, attacking, and getting hit. The pigtails, tie, and skirt have secondary motion. Eight special faces are available in the F8 preview.
+- **PV preview.** Supported solo Miku 3D PVs include choreography, camera cuts, music, and expressions. PZ's background music is muted during playback and restored afterwards. Start with *Love is War* `[PV001]`.
+
+### Requirements
+
+| Component | Initial test configuration |
+| --- | --- |
+| Project Zomboid | Windows x64, Build 42.21.0, single-player |
+| ZombieBuddy | Tested with 2.3.4. Subscribe, then set up the Java agent for the way you launch PZ. [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853) · [Installation guide](https://github.com/zed-0xff/ZombieBuddy/blob/master/doc/Installation.md) |
+| Project Viewpoint | Tested with 0.1.6.1. Enable it on the save you use for testing. [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528) |
+| Mega Mix+ | Use your own Steam installation. The catalog reflects the DLC available in that installation. [Steam store](https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/) |
+| MikuMikuLibrary | Used for local imports. Use `MikuMikuModel.7z` from the official v2.2.0 release. The DLL file version is 2.2.0.0. [v2.2.0 downloads and prerequisites](https://github.com/blueskythlikesclouds/MikuMikuLibrary/releases/tag/v2.2.0) |
+
+### Installation and use
+
+Configure ZombieBuddy for **Windows Normal Launch** first. Skip this setup if it is already working.
+
+1. Subscribe to ZombieBuddy and Project Viewpoint in Steam and let them download.
+2. Use PZ's Steam menu to browse local files. Copy `ZombieBuddy.jar` and `zbNative.dll` from that Steam library's `steamapps\workshop\content\108600\3619862853\mods\ZombieBuddy\libs\` into the game folder containing `ProjectZomboid64.exe`.
+3. In Steam → PZ → Properties → Launch Options, add `-agentlib:zbNative --` and use Normal Launch. Keep the trailing `--`. Do not add a separate `-javaagent:ZombieBuddy.jar` on Windows.
+4. For Alternate Launch, also append `-agentlib:zbNative` to the `SET _JAVA_OPTIONS=` line in `ProjectZomboid64.bat`; Steam options alone are insufficient. Check for ZombieBuddy's loaded message on the main menu. [Source: official ZombieBuddy installation guide](https://github.com/zed-0xff/ZombieBuddy/blob/master/doc/Installation.md)
+
+**Install DIVA Character:**
+
+1. Complete the framework setup above and close PZ. Use the launch mode configured to load the Java agent for subsequent launches.
+2. Close PZ and download the test ZIP linked at the top of this README (also available under **Assets** on the GitHub release page). Extract its `DivaCharacter` folder into `%USERPROFILE%\Zomboid\mods\` and keep the packaged directory structure. The resulting path should include `%USERPROFILE%\Zomboid\mods\DivaCharacter\42\mod.info`. For a custom PZ data directory, use its `mods` folder.
+3. Download `MikuMikuModel.7z` from the link above and extract the tools into a `MikuMikuModel` folder inside your Mega Mix+ installation. Keep the accompanying files together. Check that the directory containing `DivaMegaMix.exe` also contains `MikuMikuModel\MikuMikuLibrary.dll`.
+4. Enable ZombieBuddy, Project Viewpoint, and DIVA Character from PZ's **Mods** menu. For an existing save, also check its mod list. Restart when prompted. If ZombieBuddy opens its Java mod approval dialog, check the DIVA Character entry, select **Allow**, and click **OK**.
+5. Load a single-player save and press `F8`, or select **DIVA Character...** from the world context menu. Use **Browse** to pick your Mega Mix+ folder, or paste the folder or full `DivaMegaMix.exe` path. Click **Scan**, choose the default outfit `[0]`, and click **Apply outfit**.
+6. If Viewpoint's camera mode is off, press `O` to enable it. Use `Shift+O` to switch between first and third person. To preview a PV, stand on foot in an open area in third person, select `[PV001]` in F8, and click **Play PV**. Use **Stop PV** to return to gameplay. [Viewpoint controls](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528)
+
+### FAQ
+
+**F8 does nothing, or my original character is still visible.** Check that DIVA Character and Project Viewpoint are enabled on the current save, that your launch mode loads ZombieBuddy, and that the Java mod was approved. The world context menu also opens the panel.
+
+**Scan reports a missing game or DLL.** Select the directory that contains `DivaMegaMix.exe` and the base game CPK files. Check the DLL path and version in step 3. Imports are cached in `DivaCharacter\cache` under the PZ user data directory.
+
+**Why is an outfit listed when it fails to import?** The catalog comes from the original game's outfit table. Of the 212 entries checked, 91 use texture substitutions that still need support, including Snow Miku 2010 `[68]`. Other entries are being tested over time. For your first test, use the default outfit `[0]` or MEIKO Style `[3]`.
+
+**Why is a PV unavailable or unable to start?** This test covers solo Miku 3D PVs with compatible motion, camera, and music data. Apply an outfit, get out of any vehicle, and switch to Viewpoint third person. Some tracks require installed DLC, and some camera formats still need support.
+
+**Do I need Eclipse?** Viewpoint's built-in **Default** renderer works. Eclipse V12 also supports the character materials and post-processing. Visual matching across lighting conditions and presets is still being refined. If a different shader pack causes rendering issues, switch to **Default** for comparison.
+
+**How do I restore my character?** Use **Restore player** in the F8 menu.
+
+### Planned work
+
+- Apply texture substitutions from the original outfit table and test more outfits in game.
+- Refine long-hair and cloth physics, foot contact for different footwear, and support-hand placement for two-handed weapons.
+- Support more PV camera formats, special expressions, and related effects. Stage and stage-lighting support are later areas to explore.
+
+### Project code license
+
+The project's original code, shaders, import tools, and project documentation use the **MIT License**, with `Copyright (c) 2026 BqCai and contributors`. You may use, modify, and redistribute them, including commercially, provided the copyright and permission notices are retained. The software is provided as is, without warranty. This also applies to the project code in `v0.1.0-alpha.1`. [Standard MIT license text](https://opensource.org/license/mit)
+
+This license does not cover models, textures, animation, music, or other resources from Mega Mix+ or Project Zomboid, and does not replace the licenses of external dependencies. Portions adapted from ReDIVA retain their original MIT copyright and permission notice.
+
+### Game resource rights
+
+DIVA Character is an independent fan mod. *Project Zomboid* is developed by The Indie Stone. Rights to *Hatsune Miku: Project DIVA Mega Mix+* remain with SEGA, Crypton Future Media, INC., and the respective rights holders. Models, textures, motions, cameras, and music are imported locally from the player's own game installation. Use is subject to the applicable terms for each game and third-party component. [Mega Mix+ copyright notice](https://store.steampowered.com/app/1761390/Hatsune_Miku_Project_DIVA_Mega_Mix/) · [Mega Mix+ EULA](https://store.steampowered.com/eula/1761390_eula_0)
+
+### Third-party components and tools
+
+Thanks to these projects and their authors. Apart from the adapted ReDIVA portions described below, these components and tools are obtained separately and are not bundled with the mod.
+
+| Project and authors | Use and notices |
+| --- | --- |
+| **ZombieBuddy — Zed (zed-0xff)** | The PZ Java mod framework, installed separately using its upstream instructions. [Project](https://github.com/zed-0xff/ZombieBuddy) |
+| **Project Viewpoint — ellu, norkus** | Camera, rendering, and shader-pack integration, subscribed to separately. [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528) |
+| **MikuMikuLibrary / MikuMikuModel — blueskythlikesclouds and contributors** | Local resource reading and model inspection. Players install the MikuMikuLibrary DLL separately. [Project](https://github.com/blueskythlikesclouds/MikuMikuLibrary) |
+| **ReDIVA — korenkonder and contributors** | The importer uses its DSC command layouts, common-motion mappings, and IBL mip filtering implementation. The skin renderer uses its scattering profile calculation. Adapted portions retain the MIT license, `Copyright (c) 2024 korenkonder`, and the full permission notice. [Project](https://github.com/korenkonder/ReDIVA) |
+| **RenderDoc — Baldur Karlsson and contributors** | Frame capture and graphics analysis during development. [Project](https://github.com/baldurk/renderdoc) |
+| **Blender — the Blender project and contributors** | Model and rig inspection during development. [Project](https://www.blender.org/) |
+
+### Project contributors
+
+| Contributor | Contributions |
+| --- | --- |
+| **BqCai** | Project creator and maintainer; feature direction, visual references, in-game testing, and visual acceptance. |
+| **OpenAI Codex (AI coding assistant)** | Collaborative implementation, material, rigging, physics, and animation debugging; tests, build scripts, and bilingual release documentation. |
+
+### Build from source
 
 On Windows, install Python and JDK 25. Point `DIVA_JDK` to the JDK directory if it differs from the build script's default. Copy `project.local.example.json` to `project.local.json` and enter the paths to Project Zomboid, ZombieBuddy, and the directory containing the MikuMikuLibrary v2.2.0 DLL. The Windows .NET Framework C# compiler builds the import helper.
 
@@ -20,4 +210,68 @@ On Windows, install Python and JDK 25. Point `DIVA_JDK` to the JDK directory if 
 python tools/build_release.py
 ```
 
-The builder writes a ZIP under `build/release` and prints its SHA-256. The package contains the mod, the importer, and the public shader. The F8 menu reads outfits and PV resources from the player's local Mega Mix+ installation.
+The builder writes a ZIP under `build/release` and prints its SHA-256. The package contains the mod code, local importer, independently implemented shaders, instructions, and license notices. The F8 menu imports game resources from the player's own installation.
+
+### Feedback and contributions
+
+Bug reports, compatibility results, and translation suggestions are welcome in the repository's **Issues** tab. Include your PZ, ZombieBuddy, and Viewpoint versions, shader pack and preset, outfit or PV ID, steps to reproduce, and a relevant `console.txt` excerpt. Use logs and IDs in reports and keep original game files and import caches on your own machine.
+
+Code, documentation, and translation improvements are welcome as **Pull Requests**.
+
+## 完整许可声明 / Full license notices
+
+本项目与下述 ReDIVA 移植部分的完整许可文本直接列在这里。仓库及今后构建的安装包也保留独立的许可文件，便于再分发时携带。
+
+The complete project license and the notice for adapted ReDIVA portions are included below. Separate notice files are also retained in the repository and future package builds for redistribution.
+
+### DIVA Character — MIT
+
+```text
+MIT License
+
+Copyright (c) 2026 BqCai and contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### ReDIVA 移植部分 / Adapted ReDIVA portions — MIT
+
+```text
+MIT License
+
+Copyright (c) 2024 korenkonder
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
